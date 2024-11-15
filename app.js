@@ -26,6 +26,7 @@ app.post('/submit', (req, res) => {
 });
 
 // 启动服务器
-app.listen(5000, () => {
-  console.log('服务器正在监听 http://localhost:5000');
+const port = process.env.PORT || 5000;  // 优先使用环境变量中的端口号
+app.listen(port, () => {
+  console.log(`服务器正在监听 http://localhost:${port}`);
 });
