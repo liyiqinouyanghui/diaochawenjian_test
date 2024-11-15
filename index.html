@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Form</title>
+  <link rel="stylesheet" href="styles.css">  <!-- 引入 CSS 文件 -->
+</head>
+<body>
+  <div class="container">
+    <h1>Customer Satisfaction Survey</h1>
+
+    <!-- 问卷表单 -->
+    <form id="surveyForm" action="http://localhost:5000/submit" method="POST">
+      <!-- 用户填写姓名 -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <!-- 用户填写年龄 -->
+      <label for="age">Age:</label>
+      <input type="text" id="age" name="age" required><br><br>
+
+      <!-- 用户反馈 -->
+      <label for="feedback">Feedback:</label>
+      <textarea id="feedback" name="feedback" required></textarea><br><br>
+
+      <!-- 提交按钮 -->
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- 二维码生成部分 -->
+    <div id="qrcode"></div>
+    <input type="text" id="qrText" placeholder="Enter text for QR code">
+    <button onclick="generateQRCode()">Generate QR Code</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    function generateQRCode() {
+      const qrContainer = document.getElementById("qrcode");
+      qrContainer.innerHTML = ""; // 清空之前的二维码
+      const text = document.getElementById("qrText").value;
+      new QRCode(qrContainer, {
+        text: text,
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+</body>
+</html>
